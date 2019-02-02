@@ -13,8 +13,10 @@ import com.mlafroce.magnetico.practice01.controller.utils.ControllerVersion;
 @RestController
 @RequestMapping("apartments")
 public class ApartmentController {
+	public static final String CONTROLLER_DESCRIPTION = "Departamentos";
+
 	@GetMapping("/version")
     public ControllerVersion getVersion() {
-        return new ControllerVersion(0.1, "Departamentos");
+        return new ControllerVersion(0.1, CONTROLLER_DESCRIPTION);
     }
 }
