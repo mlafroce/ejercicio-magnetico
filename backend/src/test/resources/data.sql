@@ -1,0 +1,2 @@
+-- cleanup
+delete from apartment;
