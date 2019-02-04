@@ -14,7 +14,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 // webpack configuration 
 module.exports = {
   entry: [
-    path.resolve(__dirname, "src/app.module.js"),
+    path.resolve(__dirname, "src/app.js"),
   ],
   output: {
     path: path.resolve(__dirname, 'dist'), // defins the main utput directory
@@ -66,7 +66,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.sass$/,
+        test: /\.scss$/,
         include: [
           path.resolve(__dirname, "src/sass")
         ],
@@ -81,10 +81,14 @@ module.exports = {
                 sourceMap: true,
               }
             },
-            'sass-loader'
+            'scss-loader'
           ]
         })
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
     ]
   },
   plugins: [

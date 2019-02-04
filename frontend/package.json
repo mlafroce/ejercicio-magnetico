@@ -11,6 +11,11 @@
   },
   "dependencies": {
     "angular": "^1.7.6",
+    "angular-route": "^1.7.6",
+    "bootstrap": "^4.2.1",
+    "css-loader": "^2.1.0",
+    "style-loader": "^0.23.1",
+    "terser": "^3.14.1",
     "webpack": "^4.29.0"
   },
   "devDependencies": {

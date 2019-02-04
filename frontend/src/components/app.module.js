@@ -1,4 +1,4 @@
 var appModule = angular.module
-  ('appModule',[]);
+  ('appModule',['ngRoute']);
 
 export default appModule;

@@ -6,7 +6,21 @@
   </head>
   <body ng-app="appModule" ng-strict-di ng-cloak>
     <div ng-controller="apartmentController">
-      <h1>{{greeting}}</h1>
+      <div class="header">
+        <h1>Departamentos</h1>
+      </div>
+      <div class="container">
+        <div class="apartments" ng-repeat="apartment in apartments track by apartment.id">
+          <ul>
+            <li>Id del departamento: {{apartment.id}}</li>
+            <li>Ubicación: {{apartment.location}}</li>
+            <li>Habitaciones: {{apartment.rooms}}</li>
+            <li>Superficie (metros cuadrados): {{apartment.area}}</li>
+            <li>Costo de alquiler por noche {{apartment.rentPerDay}}</li>
+            <li>Costo de alquiler por mes {{apartment.rentPerMonth}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
