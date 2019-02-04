@@ -8,6 +8,10 @@ import javax.persistence.EntityManagerFactory;
 
 
 @Configuration
+/**
+ * Configuración de JPA
+ *
+ */
 public class HibernateConfiguration {
 
 	@Autowired
