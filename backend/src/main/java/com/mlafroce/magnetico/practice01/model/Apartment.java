@@ -93,4 +93,9 @@ public class Apartment {
 	public void setRentPerMonth(Double rentPerMonth) {
 		this.rentPerMonth = rentPerMonth;
 	}
+
+	public Double estimate(Integer intDays) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
