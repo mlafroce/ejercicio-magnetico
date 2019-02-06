@@ -3,6 +3,9 @@ package com.mlafroce.magnetico.practice01.controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -73,8 +76,18 @@ public class ApartmentControllerTest {
 	public void estimateRentedNoDiscounts() {
 		String apiUrl = "http://localhost:" + port + "/apartments/"+ apartment1id +
 				"/estimate?username=test&days=2&months=0";
+		String rentUrl = "http://localhost:" + port + "/apartments/"+ apartment1id +
+				"/rent";
+		
 		assertEquals(new Double(200.0),
-		this.restTemplate.getForObject(apiUrl, Double.class));
+		  this.restTemplate.getForObject(apiUrl, Double.class));
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("username", "test");
+		this.restTemplate.postForObject(rentUrl, params, String.class);
+		
+		assertEquals(new Double(190.0),
+		  this.restTemplate.getForObject(apiUrl, Double.class));
 	}
 	
 	@Test

@@ -1,10 +1,13 @@
 package com.mlafroce.magnetico.practice01.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,10 +43,12 @@ public class ApartmentController {
 
 	/**
 	 * Devuelve el costo estimado de alquilar el departamento con id {id} durante
-	 * {days} dias
+	 * {days} dias y {month} meses
 	 * 
-	 * @param days:
-	 *            dias de alquiler
+	 * @param id: id del departamento a alquilar
+	 * @param username: usuario que alquilar
+	 * @param days: dias de alquiler
+	 * @param months: meses de alquiler
 	 * @return costo estimado del alquiler
 	 * 
 	 * @TODO: excepciones y otras cosas al
@@ -59,6 +64,27 @@ public class ApartmentController {
 		Integer intMonths = Integer.decode(months);
 		Apartment apartment = apartmentService.getById(longId);
 		return rentService.estimate(apartment, username, intDays, intMonths);
+	}
+	
+	/**
+	 * Devuelve el costo estimado de alquilar el departamento con id {id} durante
+	 * {days} dias
+	 * 
+	 * @param id: id del departamento a alquilar
+	 * @param username: usuario que alquilar
+	 * @return id del alquiler realizado
+	 * 
+	 * @TODO: excepciones y otras cosas al
+	 *         decodificar
+	 */
+	@PostMapping("/{id}/rent")
+	public Long estimate(@PathVariable("id") String id,
+			@RequestBody Map<String, String> body) {
+		Long longId = Long.decode(id);
+		String username = body.get("username");
+		Apartment apartment = apartmentService.getById(longId);
+		Rent rent = new Rent(apartment, username);
+		return rentService.save(rent);
 	}
 
 	@GetMapping("/version")
