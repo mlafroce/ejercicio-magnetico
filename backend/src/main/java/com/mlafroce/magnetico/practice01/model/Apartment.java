@@ -94,8 +94,18 @@ public class Apartment {
 		this.rentPerMonth = rentPerMonth;
 	}
 
-	public Double estimate(Integer intDays) {
-		// TODO Auto-generated method stub
-		return null;
+	public Double estimate(Integer days, Integer months, Boolean previousRentDiscount) {
+		Double totalRent = this.rentPerDay * days + this.rentPerMonth * months;
+		Double modifier = 1.0;
+		if (days > 4) {
+			modifier = 0.95;
+		}
+		if (days > 15 || months > 0) {
+			modifier = 0.85;
+		}
+		if (previousRentDiscount) {
+			modifier = modifier - 0.05;
+		}
+		return totalRent * modifier;
 	}
 }

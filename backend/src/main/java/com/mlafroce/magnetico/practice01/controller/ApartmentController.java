@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mlafroce.magnetico.practice01.controller.utils.ControllerVersion;
 import com.mlafroce.magnetico.practice01.model.Apartment;
+import com.mlafroce.magnetico.practice01.model.Rent;
 import com.mlafroce.magnetico.practice01.service.iface.ApartmentServiceIFace;
+import com.mlafroce.magnetico.practice01.service.iface.RentServiceIFace;
 
 /**
  * API publica de departamentos, permite listar y alquilarlos
@@ -24,31 +26,43 @@ public class ApartmentController {
 
 	@Autowired
 	ApartmentServiceIFace apartmentService;
-	
+
+	@Autowired
+	RentServiceIFace rentService;
+
 	/**
 	 * Lista todos los departamentos en la base de datos
 	 */
 	@GetMapping("/")
-    public List<Apartment> list() {
-        return apartmentService.list();
-    }
-	
+	public List<Apartment> list() {
+		return apartmentService.list();
+	}
+
 	/**
-	 * Devuelve el costo estimado de alquilar el departamento con id {id} durante {days} dias
-	 * @param days: dias de alquiler
+	 * Devuelve el costo estimado de alquilar el departamento con id {id} durante
+	 * {days} dias
+	 * 
+	 * @param days:
+	 *            dias de alquiler
 	 * @return costo estimado del alquiler
+	 * 
+	 * @TODO: excepciones y otras cosas al
+	 *         decodificar
 	 */
 	@GetMapping("/{id}/estimate")
-    public Double estimate(@PathVariable("id") String id, @RequestParam("days") String days) {
+	public Double estimate(@PathVariable("id") String id,
+			@RequestParam("username") String username,
+			@RequestParam("days") String days,
+			@RequestParam("months") String months) {
 		Long longId = Long.decode(id);
 		Integer intDays = Integer.decode(days);
+		Integer intMonths = Integer.decode(months);
 		Apartment apartment = apartmentService.getById(longId);
-		Double cost = apartment.estimate(intDays);
-        return cost;
-    }
-	
+		return rentService.estimate(apartment, username, intDays, intMonths);
+	}
+
 	@GetMapping("/version")
-    public ControllerVersion getVersion() {
-        return new ControllerVersion(0.1, CONTROLLER_DESCRIPTION);
-    }
+	public ControllerVersion getVersion() {
+		return new ControllerVersion(0.1, CONTROLLER_DESCRIPTION);
+	}
 }

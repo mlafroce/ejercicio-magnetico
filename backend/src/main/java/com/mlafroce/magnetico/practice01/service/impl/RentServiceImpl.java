@@ -27,4 +27,9 @@ public class RentServiceImpl implements RentServiceIFace {
 		return rentDao.previousRentExists(apartment, username);
 	}
 
+	@Override
+	public Double estimate(Apartment apartment, String username, Integer days, Integer months) {
+		Boolean previousRentDiscount = previousRentExists(apartment, username);
+		return apartment.estimate(days, months, previousRentDiscount);
+	}	
 }

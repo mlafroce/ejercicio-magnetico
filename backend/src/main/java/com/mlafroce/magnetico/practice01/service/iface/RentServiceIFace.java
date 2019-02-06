@@ -22,4 +22,12 @@ public interface RentServiceIFace {
 	 * @return
 	 */
 	Boolean previousRentExists(Apartment apartment, String username);
+	
+	/**
+	 * Devuelve el precio estimado de alquiler
+	 * @param apartment
+	 * @param username
+	 * @return
+	 */
+	Double estimate(Apartment apartment, String username, Integer days, Integer months);
 }
