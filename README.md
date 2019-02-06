@@ -35,7 +35,7 @@ gradle build
 
 Esto genera un jar con la aplicación en la carpeta `build/libs`
 
-### Backend
+### Frontend
 
 Requiere `npm`
 
@@ -56,6 +56,15 @@ Webpack posee un servidor de desarrollo que puede ser lanzado ejecutando
 
 ~~~
 npm start
+~~~
+
+Si se dispone de un servidor preinstalado, agregar la siguiente configuración
+
+~~~
+location /alquileres {
+    alias   ${ruta a la carpeta donde fue compilado el frontend};
+    index   index.html;
+}
 ~~~
 
 #### Backend
