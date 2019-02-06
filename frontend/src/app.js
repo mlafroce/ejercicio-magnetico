@@ -2,6 +2,7 @@
 
 import angular from 'angular';
 import 'angular-route';
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/assets/app.css';
 

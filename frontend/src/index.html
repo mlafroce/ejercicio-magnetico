@@ -10,15 +10,63 @@
         <h1>Departamentos</h1>
       </div>
       <div class="container">
-        <div class="apartments" ng-repeat="apartment in apartments track by apartment.id">
-          <ul>
-            <li>Id del departamento: {{apartment.id}}</li>
-            <li>Ubicación: {{apartment.location}}</li>
-            <li>Habitaciones: {{apartment.rooms}}</li>
-            <li>Superficie (metros cuadrados): {{apartment.area}}</li>
-            <li>Costo de alquiler por noche {{apartment.rentPerDay}}</li>
-            <li>Costo de alquiler por mes {{apartment.rentPerMonth}}</li>
-          </ul>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Ubicación</th>
+              <th scope="col">Habitaciones</th>
+              <th scope="col">Superficie</th>
+              <th scope="col">Costo por noche</th>
+              <th scope="col">Costo por mes</th>
+            </tr>
+          </thead>
+          <tbody class="apartments" ng-repeat="apartment in apartments track by apartment.id">
+            <tr>
+              <th scope="row">{{apartment.id}}</th>
+              <td>{{apartment.location}}</td>
+              <td>{{apartment.rooms}}</td>
+              <td>{{apartment.area}}</td>
+              <td>{{apartment.rentPerDay}}</td>
+              <td>{{apartment.rentPerMonth}}</td>
+              <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rentModal">
+                  Alquilar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="rentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="rentModalLabel">Alquilar</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="username-input">Nombre de usuario</label>
+                <input class="form-control" id="username-input" placeholder="Nombre de usuario">
+              </div>
+              <div class="form-group">
+                <label for="days-input">Dias</label>
+                <input type="numeric" class="form-control" id="days-input" placeholder="Cantidad de dias">
+              </div>
+              <div class="form-group">
+                <label for="months-input">Meses</label>
+                <input type="numeric" class="form-control" id="months-input" placeholder="Cantidad de meses">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+              <button type="button" class="btn btn-primary">Presupuestar</button>
+              <button type="button" class="btn btn-primary">Alquilar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
